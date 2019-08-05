@@ -1,0 +1,30 @@
+{
+  "name": "armybazar--scraper-api",
+  "version": "1.0.0",
+  "description": "Simple web scaper based API. Will be used as backend for mobile app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MIKOLAJW197/armybazar--scraper-api.git"
+  },
+  "keywords": [
+    "node",
+    "webscraper"
+  ],
+  "author": "MW",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MIKOLAJW197/armybazar--scraper-api/issues"
+  },
+  "homepage": "https://github.com/MIKOLAJW197/armybazar--scraper-api#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "puppeteer": "^1.19.0"
+  }
+}
