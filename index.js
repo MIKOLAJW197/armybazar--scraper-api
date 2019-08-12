@@ -1,10 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
+const router = require('./src/router/router');
 const app = express();
 const port = 3000;
 
 app.use(morgan('combined'));
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use('/', router);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`ArmyBazar scraper API is listening on port ${port}!`));
