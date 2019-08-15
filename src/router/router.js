@@ -1,5 +1,6 @@
 var express = require('express');
 var offerListScraper = require('../scrapers/scraper');
+var offerDetailsScraper = require('../scrapers/detailsScraper');
 var router = express.Router();
 
 router.get('/', (req, res) => res.send('Hello from API!'));
@@ -23,5 +24,11 @@ router.get('/getAmmunitionOffers/:pageNumber', (req, res) =>
 router.get('/getAccesoriesOffers/:pageNumber', (req, res) =>
     offerListScraper('http://bron-i-amunicja.armybazar.eu/pl/akcesoria/strona/', req.params.pageNumber)
     .then(resp => res.send(resp)));
+
+// define offer details endPoint
+// URL of offer to scrape, is passed in JSON
+router.post('/getOfferDetails', (req, res) =>
+    offerDetailsScraper(req.body.offerUrl)
+        .then(resp => res.send(resp)));
 
 module.exports = router;
