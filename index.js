@@ -8,4 +8,6 @@ app.use(morgan('combined'));
 app.use(express.json());
 app.use('/', router);
 
-app.listen(port, () => console.log(`ArmyBazar scraper API is listening on port ${port}!`));
+var server = app.listen(port, () => console.log(`ArmyBazar scraper API is listening on port ${port}!`));
+
+module.exports = server;
