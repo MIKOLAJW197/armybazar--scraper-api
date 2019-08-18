@@ -47,7 +47,7 @@ Will return:
     "price": "1234 zł"
   },
   {
-    // second offer etc.
+    "_comment" : "second offer etc."
   }
 ]
 ```
@@ -58,7 +58,7 @@ Will return:
 Will return:
 ```json
 {
-    "id": "234567",
+    "id": "115457",
     "title": "Lorem ipsum dolor sit amet. ",
     "date": "19.03.2019, 20:08",
     "description": "Opis: Nam vitae lobortis elit. Sed id suscipit risus. Maecenas auctor urna leo. ",
