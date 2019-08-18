@@ -51,7 +51,7 @@ Will return:
   }
 ]
 ```
-#####POST reguest for offer details:
+##### POST reguest for offer details:
 ```
 /getOfferDetails
 ```
