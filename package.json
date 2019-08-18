@@ -4,6 +4,7 @@
   "description": "Simple web scaper based API. Will be used as backend for mobile app",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "jasmine"
   },
   "repository": {
