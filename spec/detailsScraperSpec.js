@@ -1,10 +1,10 @@
 describe("Details scraper", () => {
-    var scraper;
+    let scraper;
     beforeAll(() => {
         scraper = require("../src/scrapers/detailsScraper.js");
     });
     describe("Scrape for offer details", () => {
-        var data = {};
+        let data = {};
         beforeAll((done) => {
             scraper('http://bron-i-amunicja.armybazar.eu/pl/bron-dluga/ar-15-223-rem-id120292/')
                 .then(resp => {

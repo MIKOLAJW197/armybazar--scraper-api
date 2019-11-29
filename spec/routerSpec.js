@@ -1,9 +1,9 @@
-var request = require("request");
+const request = require("request");
 
-var endpoint = "http://localhost:3000/";
+const endpoint = "http://localhost:3000/";
 
 describe("Server", () => {
-    var server;
+    let server;
     beforeAll(() => {
         server = require("../index.js");
     });
@@ -27,7 +27,7 @@ describe("Server", () => {
         });
     });
     describe("GET /getShortOffers page 1", () => {
-        var data = {};
+        let data = {};
         beforeAll((done) => {
             request.get("http://localhost:3000/getShortOffers/1", (error, response, body) => {
                 data.status = response.statusCode;
@@ -44,7 +44,7 @@ describe("Server", () => {
     });
 
     describe("GET /getLongOffers page 1", () => {
-        var data = {};
+        let data = {};
         beforeAll((done) => {
             request.get("http://localhost:3000/getLongOffers/1", (error, response, body) => {
                 data.status = response.statusCode;
@@ -61,7 +61,7 @@ describe("Server", () => {
     });
 
     describe("GET /getAmmunitionOffers page 3", () => {
-        var data = {};
+        let data = {};
         beforeAll((done) => {
             request.get("http://localhost:3000/getAmmunitionOffers/3", (error, response, body) => {
                 data.status = response.statusCode;
@@ -78,7 +78,7 @@ describe("Server", () => {
     });
 
     describe("GET /getAccesoriesOffers page 2", () => {
-        var data = {};
+        let data = {};
         beforeAll((done) => {
             request.get("http://localhost:3000/getAccesoriesOffers/2", (error, response, body) => {
                 data.status = response.statusCode;

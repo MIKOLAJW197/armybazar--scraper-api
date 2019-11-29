@@ -1,10 +1,10 @@
 describe("Scraper", () => {
-    var scraper;
+    let scraper;
     beforeAll(() => {
         scraper = require("../src/scrapers/scraper.js");
     });
     describe("Scrape for offers", () => {
-        var data = [];
+        let data = [];
         beforeAll((done) => {
             // note: Other test instances in routerSpec
             scraper('http://bron-i-amunicja.armybazar.eu/pl/bron-krotka/strona/4/')

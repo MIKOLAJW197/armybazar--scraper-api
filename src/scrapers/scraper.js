@@ -1,14 +1,15 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const ProductDTO = require('../../model/dto/product.dto');
 
-const offerListScraper = function (pageUrl, pageNumber) {
+const offerListScraper = (pageUrl, pageNumber) => {
     return axios(pageUrl + pageNumber + '/')
         .then(response => {
             const html = response.data;
             const $ = cheerio.load(html);
             const offers = $('.inner.inzerat').not('.top');
 
-            var offersList = [];
+            let offersList = [];
 
             offers.each(function () {
                 const title = $(this).find('.top > h2').text();
@@ -19,15 +20,7 @@ const offerListScraper = function (pageUrl, pageNumber) {
                 const date = $(this).find('.cendat > .datum').text();
                 const price = $(this).find('.cendat > .cena').text();
 
-                offersList.push({
-                    title: title,
-                    shortDescription: shortDescription,
-                    img: img,
-                    detailsLink: detailsLink,
-                    localization: localization,
-                    date: date,
-                    price: price,
-                });
+                offersList.push(new ProductDTO(title, img, detailsLink, shortDescription, localization, date, price));
             });
 
             return offersList;

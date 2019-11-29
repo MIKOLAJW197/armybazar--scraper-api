@@ -1,10 +1,12 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const ProductDetailsDTO = require('../../model/dto/product.details.dto');
+const ContactDTO = require('../../model/dto/contact.dto');
 
 const phoneRegex = new RegExp('(?:.\\d+\\s*)+');
 const emailRegex = new RegExp('\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b');
 
-const offerDetailsScraper = function (pageUrl) {
+const offerDetailsScraper = (pageUrl) => {
     return axios(pageUrl)
         .then(response => {
             const html = response.data;
@@ -13,9 +15,8 @@ const offerDetailsScraper = function (pageUrl) {
             const offerDetailsInfoJq = $('.inner > #inz_right');
             const contactJq = $(offerDetailsInfoJq).find('p').last();
 
-            var offerDetailsResult;
-            var offerImgUrls = [];
-            var offerContact;
+            let offerImgUrls = [];
+            let offerContact;
 
             oferrImgsJq.each(function () {
                 const url = $(this)[0].attribs.href;
@@ -27,24 +28,16 @@ const offerDetailsScraper = function (pageUrl) {
             // note: If no phone number in offer, email will apear as second element in array
             const email = phone ? emailRegex.exec(phoneAndEmail[3]) : emailRegex.exec(phoneAndEmail[2]);
 
-            offerContact = {
-                user: $(contactJq).find('a').text(),
-                phone: phone ? phone[0].trim() : null,
-                email: email ? email[0].trim() : null,
-                localization: $(contactJq).prev().contents().last().text().trim()
-            };
+            offerContact = new ContactDTO($(contactJq).find('a').text(), phone, email, $(contactJq).prev().contents().last().text().trim())
 
-            offerDetailsResult = {
-                id: $('h2.outer.small').contents().last().text().substring(2),
-                title: $('h1').text(),
-                date: $(offerDetailsInfoJq).find('.left').contents().last().text().trim(),
-                description: $(offerDetailsInfoJq).find('.popis').text(),
-                price: $(offerDetailsInfoJq).find('.cena > strong > span').text(),
-                offerImgUrls: offerImgUrls,
-                contact: offerContact
-            };
-
-            return offerDetailsResult;
+            return new ProductDetailsDTO($('h2.outer.small').contents().last().text().substring(2),
+                $('h1').text(),
+                $(offerDetailsInfoJq).find('.left').contents().last().text().trim(),
+                $(offerDetailsInfoJq).find('.popis').text(),
+                $(offerDetailsInfoJq).find('.cena > strong > span').text(),
+                offerImgUrls,
+                offerContact
+            );
         })
         .catch(console.error);
 };
