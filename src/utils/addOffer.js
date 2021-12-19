@@ -96,7 +96,7 @@ async function addOffer({
   await page.waitFor(5000);
 
   return {
-    pageUrl: [...document.querySelectorAll("a")]
+    offerUrl: [...document.querySelectorAll("a")]
       .find((link) => link.innerText === "tutaj")
       .getAttribute("href"),
   };
