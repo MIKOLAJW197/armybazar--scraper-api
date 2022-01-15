@@ -49,4 +49,12 @@ router.post("/addOffer", (req, res) =>
   addOffer(req.body).then((resp) => res.send(resp))
 );
 
+// define get offers by user name
+router.get("/getByUser/:userName/:pageNumber", (req, res) =>
+  offerListScraper(
+    `http://${req.params.userName}.armybazar.eu/pl/strona/`,
+    req.params.pageNumber
+  ).then((resp) => res.send(resp))
+);
+
 module.exports = router;
